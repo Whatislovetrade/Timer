@@ -30,6 +30,12 @@ body {
     gap: 35px;
 }
 
+.timer {
+    display: flex;
+    gap: 20px;
+    font-size: 55px;
+}
+
 .timer__block {
     display: flex;
     flex-direction: column;
