@@ -1,42 +1,53 @@
 'use strict'
 
 document.addEventListener('DOMContentLoaded', () => {
-    // получить нужную дату
-    const deadLine = new Date('2024-06-26') 
+    flatpickr("#datepicker", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        onChange: function(selectedDates, dateStr, instance) {
 
-    // Получить элементы со страницы для того чтобы можно было заменять
-    const daysElement = document.querySelector('#days'),
-          hoursElement = document.querySelector('#hours'),
-          minutesElement = document.querySelector('#minutes'),
-          secondsElement = document.querySelector('#seconds');
-    
-    // Функция для расчета оставшегося времени
-    function getDate() {
-        const now = new Date()
-        const t = deadLine - now
-        
-        const daysLeft = Math.floor(t / (1000 * 60 * 60 * 24)),
-              hoursLeft = Math.floor((t / (1000 * 60 * 60)) % 24),
-              minutesLeft = Math.floor((t / (1000 * 60)) % 60),
-              secondsLeft = Math.floor((t / 1000) % 60);
-        
-        // Обновить элементы на странице
-        if (t <= 0) {
-            daysElement.innerText = '0'
-            hoursElement.innerText = '0'
-            minutesElement.innerText = '0'
-            secondsElement.innerText = '0'
-            clearInterval(timeInterval);
-        } else {
-            daysElement.innerText = daysLeft < 10? `0${daysLeft}`:daysLeft
-            hoursElement.innerText = hoursLeft < 10? `0${hoursLeft}`:hoursLeft
-            minutesElement.innerText = minutesLeft < 10? `0${minutesLeft}`:minutesLeft
-            secondsElement.innerText = secondsLeft < 10? `0${secondsLeft}`:secondsLeft
+            const days = document.querySelector('#days'),
+                  hours = document.querySelector('#hours'),
+                  minutes = document.querySelector('#minutes'),
+                  seconds = document.querySelector('#seconds');
+
+            // Очистка предыдущего таймера, если он существует
+            clearInterval(window.timeInterval)
+
+            // Получение выбранной пользователем даты
+            const selectedDate = selectedDates[0]
+
+            function getDate() {
+                // Получение текущей даты
+                const today = new Date()
+
+                // Вычисление разницы в миллисекундах
+                const differenceInMilliseconds = Date.parse(selectedDate) - Date.parse(today)
+
+                const daysLeft = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24)),
+                      hoursLeft = Math.floor((differenceInMilliseconds / (1000 * 60 * 60)) % 24),
+                      minutesLeft = Math.floor((differenceInMilliseconds / (1000 * 60)) % 60),
+                      secondsLeft = Math.floor((differenceInMilliseconds / 1000) % 60);
+
+                if (differenceInMilliseconds <= 0) {
+                    days.innerText = '00'
+                    hours.innerText = '00'
+                    minutes.innerText = '00'
+                    seconds.innerText = '00'
+                    clearInterval(window.timeInterval)
+                } else {
+                    days.innerText = daysLeft < 10 ? `0${daysLeft}` : daysLeft
+                    hours.innerText = hoursLeft < 10 ? `0${hoursLeft}` : hoursLeft
+                    minutes.innerText = minutesLeft < 10 ? `0${minutesLeft}` : minutesLeft
+                    seconds.innerText = secondsLeft < 10 ? `0${secondsLeft}` : secondsLeft
+                }
+            }
+            // Устанавливаем интервал обновления таймера
+            window.timeInterval = setInterval(getDate, 1000)
+            // Первоначальный вызов функции для отображения начальных значений
+            getDate();
         }
-    }
-    
-    // Запустить таймер и обновлять каждую секунду
-    const timeInterval = setInterval(getDate, 1000)
-    getDate()
-})
+    });
+});
+
 
