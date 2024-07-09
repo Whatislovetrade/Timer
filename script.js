@@ -48,6 +48,33 @@ document.addEventListener('DOMContentLoaded', () => {
             getDate();
         }
     });
+
+    const timer = document.querySelector('.timer'),
+          btnStart = document.querySelector('#btn__start'),
+          btnStop = document.querySelector('#btn__stop'),
+          calendar = document.querySelector('.calendar__input'),
+          title = document.querySelector('.calendar__title')
+    
+    btnStop.style.display = 'none'
+
+    btnStart.addEventListener('click', hideTimer)
+    btnStop.addEventListener('click',showTimer)
+
+    function hideTimer() {
+        timer.style.display = 'flex'
+        btnStart.style.display = 'none'
+        calendar.style.display = 'none'
+        btnStop.style.display = ''
+        title.style.display = 'none'
+    }
+
+    function showTimer() {
+        btnStart.style.display = ''
+        timer.style.display = 'none'
+        btnStop.style.display = 'none'
+        calendar.style.display = ''
+        title.style.display = ''
+    }
 });
 
 

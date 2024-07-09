@@ -31,7 +31,7 @@ body {
 }
 
 .timer {
-    display: flex;
+    display: none;
     gap: 20px;
     font-size: 55px;
 }
