@@ -75,6 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
         calendar.style.display = ''
         title.style.display = ''
     }
+
+    timer.style.cssText = `
+        border: 1px solid rgb(255, 255, 255);
+        background-color: rgba(53, 51, 51, 0.71);
+        border-radius: 10px;
+    `
 });
 
 

@@ -87,14 +87,6 @@ legend {
 	display: block;
 }
 
-.interactive_bg {
-    position: absolute;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
 
 body {
     position: relative;
@@ -113,7 +105,7 @@ body {
 }
 
 .calendar {
-    width: 600px;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -124,19 +116,62 @@ body {
     font-size: 56px;
 }
 
+@media (max-width: 800px) {
+    .calendar {
+        font-size: 33px;
+    }
+}
+
 .calendar__title, .calendar__input, .timer, .btn__start, .btn__stop {
     position: relative;
     z-index: 1;
 }
 
+@media(max-width: 492px) {
+    .calendar__title {
+        max-width: 300px;
+    }
+}
+
 input {
     text-align: center;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgba(53, 51, 51, 0.71);
+    border-radius: 10px;
+    height: 80px;
+    transition: all 0.8s ease-in;
+}
+
+input:hover {
+    box-shadow: 4px 3px 36px #fff9f9a8;
+    background-color: rgba(117, 110, 110, 0.886);
+}
+
+@media(max-width: 492px) {
+    input {
+        max-width: 300px;
+    }
 }
 
 .timer {
     display: none;
     gap: 20px;
     font-size: 55px;
+}
+
+@media (max-width: 660px) {
+    .timer {
+        font-size: 33px;
+    }
+}
+
+@media (max-width: 424px) {
+    .timer {
+        font-size: 22px;
+        height: 80px;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .timer__block {
@@ -158,4 +193,41 @@ input {
     }
     #stars:hover { 
     background:#4a4545fb;
-    }
+}
+
+button {
+    border: 1px solid rgb(255, 255, 255);
+    width: 305px;
+    background-color: rgba(53, 51, 51, 0.71);
+    border-radius: 10px;
+    height: 80px;
+    transition: box-shadow background-color 0.4s ease-in;
+}
+
+button:hover {
+    box-shadow: 4px 3px 36px #fff9f9a8;
+    background-color: rgba(117, 110, 110, 0.886);
+}
+
+
+
+h1 {
+    background-color: rgba(53, 51, 51, 0.71);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 450px;
+    height: 73px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.interactive_bg {
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
