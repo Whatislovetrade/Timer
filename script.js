@@ -81,6 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
         background-color: rgba(53, 51, 51, 0.71);
         border-radius: 10px;
     `
+
+    const monthFontSize = document.querySelector('.flatpickr-months'),
+          calendarFontSize = document.querySelector('.flatpickr-innerContainer')
+    
+    monthFontSize.style.fontSize = '10px'
+    calendarFontSize.style.fontSize = '13px'
 });
 
 
